@@ -1,0 +1,88 @@
+<div class="container-fluid h-100 mt-5">
+    <div class="row h-100 ">
+        <div class="col-12 col-md-6 col-lg-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Contact Us</h2>
+                    <form [formGroup]="contactForm" (click)="submitForm()">
+                        <div class="mb-3">
+                             <label for="firstName" class="form-label">First Name</label>
+                             <input type="text" formControlName="firstName" class="form-control" id="firstName" placeholder="First Name" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="lastName" class="form-label">Last Name</label>
+                             <input type="text" formControlName="lastName" class="form-control" id="lastName" placeholder="Last Name" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="emailAddress" class="form-label">Email Address</label>
+                             <input type="email" formControlName="emailAddress" class="form-control" id="emailAddress" placeholder="name@example.com" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="phoneNumber" class="form-label">Phone Number</label>
+                            <input type="tel" formControlName="phoneNumber" class="form-control" id="phoneNumber" placeholder="+1234567890" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="companyName" class="form-label">Company Name</label>
+                            <input type="text" formControlName="companyName" class="form-control" id="companyName" placeholder="Company" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="designation" class="form-label">Designation</label>
+                            <input type="text" formControlName="designation" class="form-control" id="designation" placeholder="Your Designation" />
+                        </div>
+                         <div class="mb-3">
+                            <input class="form-check-input" formControlName="terms" type="checkbox" value="" id="termsCheck" />
+                            <label class="form-check-label" for="termsCheck">
+                            I allow terms & conditions
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid">
+                            {{ isEditMode ? 'Update' : 'Add' }} Contact
+                        </button>
+                        <button type="button" class="btn btn-secondary ms-2" (click)="resetForm()">Reset</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6">
+          <div class="table-responsive">
+              <table class="table table-success table-striped">
+                 <thead>
+                   <tr>
+                       <th>Sr. No</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Company</th>
+                        <th>Designation</th>
+                        <th>Allowed T&C</th>
+                        <th>Actions</th>
+                 </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let a of submittedData; let i = index">
+                         <td>{{i + 1 }}</td>
+                        <td>{{a.firstName}}</td>
+                        <td>{{a.lastName}}</td>
+                        <td>{{a.emailAddress}}</td>
+                        <td>{{a.phoneNumber}}</td>
+                        <td>{{a.companyName}}</td>
+                        <td>{{a.designation}}</td>
+                        <td>{{a.terms ? 'Yes' : 'No'}}</td>
+                        <td>
+                            <button class="btn btn-sm btn-warning me-2" (click)="editContact(a)">Edit</button>
+                            <button class="btn btn-sm btn-danger" (click)="deleteContact(a.id!)">Delete</button>
+                      </td>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+    </div>
+</div>
+
+<!--  div center css interviw question -->
+
+<!-- <div class="parent-div">
+  <div class="child-div">Centered Content</div>
+</div> -->
